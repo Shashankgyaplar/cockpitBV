@@ -1,13 +1,99 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --base-bg: #030305;
+  --surface-0: #09090b;
+  --surface-1: #121214;
+  --surface-2: #18181b;
+  --surface-hover: #27272a;
+  
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-medium: rgba(255, 255, 255, 0.12);
+  
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+  
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --secure-green: #10b981;
+  --secure-green-bg: rgba(16, 185, 129, 0.15);
+  --alert-red: #ef4444;
+  --alert-red-bg: rgba(239, 68, 68, 0.15);
+  --warn-amber: #f59e0b;
+  --warn-amber-bg: rgba(245, 158, 11, 0.15);
+  --brand-accent: #e4e4e7;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--base-bg);
+  background-image: radial-gradient(circle at 50% 0%, var(--surface-1) 0%, var(--base-bg) 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
 }
+
+button { font-family: inherit; cursor: pointer; border: none; background: transparent; outline: none; }
+.mono { font-family: var(--font-mono); letter-spacing: -0.02em; }
+
+/* Framework Layout */
+.app-layout { display: flex; min-height: 100vh; }
+.sidebar { width: 260px; background: rgba(9, 9, 11, 0.6); backdrop-filter: blur(20px); border-right: 1px solid var(--border-medium); display: flex; flex-direction: column; position: fixed; height: 100vh; z-index: 50; }
+.main-wrapper { margin-left: 260px; flex: 1; display: flex; flex-direction: column; }
+.content-grid { padding: 40px 48px; max-width: 1400px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
+
+/* Premium Bento Shells */
+.bento-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 24px rgba(0, 0, 0, 0.2);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header & Controls */
+.topbar { padding: 24px 48px; display: flex; justify-content: space-between; align-items: flex-end; position: sticky; top: 0; z-index: 40; background: linear-gradient(to bottom, var(--base-bg) 60%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-subtle); }
+.header-title { font-size: 28px; font-weight: 600; letter-spacing: -0.03em; color: var(--text-primary); }
+.header-subtitle { font-size: 13px; color: var(--text-secondary); margin-top: 6px; display: flex; gap: 8px; align-items: center; }
+
+.nav-link { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: 8px; color: var(--text-secondary); font-size: 13px; font-weight: 500; transition: all 0.2s ease; margin: 2px 16px; text-align: left; width: calc(100% - 32px); }
+.nav-link:hover { color: var(--text-primary); background: var(--surface-hover); }
+.nav-link.active { color: var(--base-bg); background: var(--brand-accent); font-weight: 600; }
+
+/* Structural Typo */
+.section-label { font-size: 11px; font-weight: 600; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
+.metric-value { font-size: 36px; font-weight: 500; letter-spacing: -0.04em; font-family: var(--font-mono); color: var(--text-primary); line-height: 1; margin-bottom: 8px; }
+.metric-label { font-size: 13px; color: var(--text-secondary); font-weight: 500; }
+
+/* Advanced Tables */
+.fin-table { width: 100%; border-collapse: separate; border-spacing: 0; text-align: left; }
+.fin-table th { color: var(--text-tertiary); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; padding: 16px; border-bottom: 1px solid var(--border-medium); }
+.fin-table td { padding: 16px; border-bottom: 1px solid var(--border-subtle); font-size: 13px; color: var(--text-secondary); }
+.fin-table tr:hover td { background: rgba(255, 255, 255, 0.01); }
+
+/* Buttons & Badges */
+.btn-primary { background: var(--brand-accent); color: var(--base-bg); padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; transition: 0.2s; width: 100%; text-align: center; }
+.btn-primary:hover:not(:disabled) { transform: translateY(-1px); background: #ffffff; }
+.btn-danger { background: transparent; color: var(--alert-red); border: 1px solid var(--alert-red-bg); padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 500; transition: 0.2s; width: 100%; text-align: center; }
+.btn-danger:hover:not(:disabled) { background: var(--alert-red-bg); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.status-badge { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 6px; }
+.badge-green { background: var(--secure-green-bg); color: var(--secure-green); border: 1px solid rgba(16, 185, 129, 0.2); }
+.badge-amber { background: var(--warn-amber-bg); color: var(--warn-amber); border: 1px solid rgba(245, 158, 11, 0.2); }
+.badge-red { background: var(--alert-red-bg); color: var(--alert-red); border: 1px solid rgba(239, 68, 68, 0.2); }
+.badge-neutral { background: rgba(255,255,255,0.04); color: var(--text-secondary); border: 1px solid var(--border-subtle); font-family: var(--font-mono); }
+
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+.data-row { display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: 12px; border: 1px solid var(--border-subtle); background: rgba(0,0,0,0.1); }
+.icon-box { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--surface-2); border: 1px solid var(--border-subtle); font-size: 16px; color: var(--text-primary); flex-shrink: 0; }
