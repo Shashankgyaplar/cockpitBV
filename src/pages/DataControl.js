@@ -17,7 +17,8 @@ export default function DataControl() {
     if (!window.confirm('Delete all behavioral ML data? This cannot be undone.')) return;
     setLoading(true);
     try {
-      await axios.delete('http://localhost:5000/api/consent/shashank', { data: { data_type: 'behavioral' } });
+      const apiBase = process.env.REACT_APP_API_URL || 'https://behaviorvault-api.onrender.com';
+      await axios.delete(`${apiBase}/api/consent/shashank`, { data: { data_type: 'behavioral' } });
       setBehaviorDeleted(true);
     } catch {} finally { setLoading(false); }
   };

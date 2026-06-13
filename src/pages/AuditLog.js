@@ -6,7 +6,8 @@ export default function AuditLog() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/behavior/sessions/shashank')
+    const apiBase = process.env.REACT_APP_API_URL || 'https://behaviorvault-api.onrender.com';
+    axios.get(`${apiBase}/api/behavior/sessions/shashank`)
       .then(r => setSessions(r.data.sessions))
       .catch(() => {})
       .finally(() => setLoading(false));
