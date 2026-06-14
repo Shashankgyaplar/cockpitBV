@@ -32,6 +32,7 @@ export default function App() {
   const [adminUsername, setAdminUsername] = useState('');
   const [adminPassword, setAdminPassword] = useState('');
   const [loginError, setLoginError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleAdminLogin = (e) => {
     e.preventDefault();
@@ -50,6 +51,7 @@ export default function App() {
     setIsAdminLoggedIn(false);
     setAdminUsername('');
     setAdminPassword('');
+    setShowPassword(false);
   };
 
   if (!isAdminLoggedIn) {
@@ -78,15 +80,49 @@ export default function App() {
 
           <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '20px' }}>
             <label style={{ fontSize: '10px', textTransform: 'uppercase', color: 'var(--text-secondary)', fontWeight: '600', letterSpacing: '0.05em' }}>Admin Password</label>
-            <input 
-              type="password" 
-              className="admin-input" 
-              placeholder="••••••••••••"
-              value={adminPassword}
-              onChange={(e) => setAdminPassword(e.target.value)}
-              required
-              style={{ margin: 0 }}
-            />
+            <div style={{ position: 'relative', width: '100%' }}>
+              <input 
+                type={showPassword ? "text" : "password"} 
+                className="admin-input" 
+                placeholder="••••••••••••"
+                value={adminPassword}
+                onChange={(e) => setAdminPassword(e.target.value)}
+                required
+                style={{ margin: 0, paddingRight: '44px' }}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '12px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  color: 'var(--text-tertiary)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: 0,
+                  transition: 'color 0.2s, transform 0.1s',
+                }}
+                className="password-toggle-btn"
+              >
+                {showPassword ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                )}
+              </button>
+            </div>
             {loginError ? <div className="admin-error">{loginError}</div> : null}
           </div>
 

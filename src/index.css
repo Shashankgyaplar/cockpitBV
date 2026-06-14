@@ -496,3 +496,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
   font-family: var(--font-mono);
   text-align: left;
 }
+
+.password-toggle-btn {
+  opacity: 0.6;
+  transition: all 0.2s ease-in-out;
+}
+
+.password-toggle-btn:hover {
+  color: var(--secure-green) !important;
+  opacity: 1;
+}
+
+.password-toggle-btn:active {
+  transform: translateY(-50%) scale(0.85) !important;
+}
