@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import axios from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const DPDP = [
   { section: 'Section 6', right: 'Consent', how: 'Explicit opt-in before any signal collection begins' },
@@ -8,17 +8,21 @@ const DPDP = [
   { section: 'Section 12', right: 'Right to Erasure', how: 'Behavioral ML data deletable instantly on request' },
 ];
 
-export default function DataControl() {
+export default function DataControl({ currentUser }) {
   const [behaviorDeleted, setBehaviorDeleted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showRbiInfo, setShowRbiInfo] = useState(false);
 
+  useEffect(() => {
+    setBehaviorDeleted(false);
+  }, [currentUser]);
+
   const deleteBehavior = async () => {
-    if (!window.confirm('Delete all behavioral ML data? This cannot be undone.')) return;
+    if (!window.confirm(`Delete all behavioral ML data for ${currentUser.name}? This cannot be undone.`)) return;
     setLoading(true);
     try {
       const apiBase = process.env.REACT_APP_API_URL || 'https://behaviorvault-api.onrender.com';
-      await axios.delete(`${apiBase}/api/consent/shashank`, { data: { data_type: 'behavioral' } });
+      await axios.delete(`${apiBase}/api/consent/${currentUser.id}`, { data: { data_type: 'behavioral' } });
       setBehaviorDeleted(true);
     } catch {} finally { setLoading(false); }
   };

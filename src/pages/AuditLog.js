@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function AuditLog() {
+export default function AuditLog({ currentUser }) {
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     const apiBase = process.env.REACT_APP_API_URL || 'https://behaviorvault-api.onrender.com';
-    axios.get(`${apiBase}/api/behavior/sessions/shashank`)
+    axios.get(`${apiBase}/api/behavior/sessions/${currentUser.id}`)
       .then(r => setSessions(r.data.sessions))
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, []);
+  }, [currentUser]);
 
   const scoreColor = (score, isAnomaly) => {
     if (isAnomaly) return 'var(--alert-red)';
