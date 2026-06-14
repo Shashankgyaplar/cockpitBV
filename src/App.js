@@ -17,7 +17,7 @@ const PROFILES = [
   { name: 'Shashanks', id: 'shashanks', bank: 'ICICI Bank ···· 3091' },
   { name: 'Dhyan', id: 'dhyan', bank: 'Axis Bank ···· 1121' },
   { name: 'Dishan', id: 'dishan', bank: 'Yes Bank ···· 9104' },
-  { name: 'X', id: 'x', bank: 'IDFC First ···· 4406' },
+  { name: 'Vijay', id: 'vijay', bank: 'IDFC First ···· 120706' },
   { name: 'Pavan', id: 'pavan', bank: 'Kotak Bank ···· 1901' },
   { name: 'Shetty', id: 'shetty', bank: 'IndusInd Bank ···· 2010' },
   { name: 'Boss', id: 'boss', bank: 'Federal Bank ···· 2908' },
