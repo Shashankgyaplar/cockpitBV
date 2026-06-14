@@ -31,21 +31,23 @@ export default function DataControl({ currentUser }) {
     <>
       <section className="bento-card" style={{ padding: 0 }}>
         <div style={{ padding: '24px 24px 8px' }}><h2 className="section-label">DPDP Act 2023 — Compliance Map</h2></div>
-        <table className="fin-table">
-          <thead>
-            <tr><th>Section</th><th>Statutory Right</th><th>Technical Implementation</th><th>Status</th></tr>
-          </thead>
-          <tbody>
-            {DPDP.map((row, i) => (
-              <tr key={i}>
-                <td className="mono" style={{ color: 'var(--blue)' }}>{row.section}</td>
-                <td style={{ fontWeight: '500', color: 'var(--text-primary)' }}>{row.right}</td>
-                <td>{row.how}</td>
-                <td><span className="status-badge badge-green">Compliant</span></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="table-responsive">
+          <table className="fin-table">
+            <thead>
+              <tr><th>Section</th><th>Statutory Right</th><th>Technical Implementation</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              {DPDP.map((row, i) => (
+                <tr key={i}>
+                  <td className="mono" style={{ color: 'var(--blue)' }}>{row.section}</td>
+                  <td style={{ fontWeight: '500', color: 'var(--text-primary)' }}>{row.right}</td>
+                  <td>{row.how}</td>
+                  <td><span className="status-badge badge-green">Compliant</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <div className="bento-card style-row" style={{ borderLeft: '4px solid var(--warn-amber)', background: 'var(--warn-amber-bg)', display: 'flex', gap: '16px', padding: '24px' }}>

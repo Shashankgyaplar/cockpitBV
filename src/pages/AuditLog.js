@@ -68,35 +68,37 @@ export default function AuditLog({ currentUser }) {
         {sessions.length === 0 ? (
           <div style={{ padding: '48px', textAlign: 'center', color: 'var(--text-tertiary)', fontSize: '13px' }}>No sessions yet. Open the app and log in to generate telemetry data.</div>
         ) : (
-          <table className="fin-table mono" style={{ fontSize: '12px' }}>
-            <thead>
-              <tr><th>Session Marker</th><th>Timestamp</th><th>Anomaly Target</th><th>Security Status</th><th>Hardware Signals</th></tr>
-            </thead>
-            <tbody>
-              {sessions.map((session, i) => (
-                <tr key={i} style={{ background: session.is_anomaly || session.duress_flag ? 'rgba(239,68,68,0.02)' : 'transparent' }}>
-                  <td style={{ color: 'var(--text-primary)', fontWeight: '500' }}>#{sessions.length - i}</td>
-                  <td style={{ color: 'var(--text-tertiary)' }}>
-                    {new Date(session.timestamp).toLocaleString('en-IN', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })}
-                  </td>
-                  <td style={{ color: scoreColor(session.anomaly_score, session.is_anomaly), fontWeight: '500' }}>
-                    {(session.anomaly_score || 0).toFixed(4)}
-                  </td>
-                  <td>
-                    <div style={{ display: 'flex', gap: '6px' }}>
-                      {session.duress_flag && <span className="status-badge badge-red">DURESS</span>}
-                      <span className={`status-badge ${getBadgeClass(session.anomaly_score, session.is_anomaly)}`}>
-                        {session.is_anomaly ? 'Anomaly' : session.anomaly_score < 0.3 ? 'Normal' : 'Elevated'}
-                      </span>
-                    </div>
-                  </td>
-                  <td style={{ color: 'var(--text-tertiary)', fontSize: '11px' }}>
-                    KST:{session.keystroke_avg_ms || '0'}ms | SWP:{session.swipe_avg_px_per_sec || '0'}px/s | DEV:{session.device_type || 'mobile'}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="table-responsive">
+            <table className="fin-table mono" style={{ fontSize: '12px' }}>
+              <thead>
+                <tr><th>Session Marker</th><th>Timestamp</th><th>Anomaly Target</th><th>Security Status</th><th>Hardware Signals</th></tr>
+              </thead>
+              <tbody>
+                {sessions.map((session, i) => (
+                  <tr key={i} style={{ background: session.is_anomaly || session.duress_flag ? 'rgba(239,68,68,0.02)' : 'transparent' }}>
+                    <td style={{ color: 'var(--text-primary)', fontWeight: '500' }}>#{sessions.length - i}</td>
+                    <td style={{ color: 'var(--text-tertiary)' }}>
+                      {new Date(session.timestamp).toLocaleString('en-IN', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })}
+                    </td>
+                    <td style={{ color: scoreColor(session.anomaly_score, session.is_anomaly), fontWeight: '500' }}>
+                      {(session.anomaly_score || 0).toFixed(4)}
+                    </td>
+                    <td>
+                      <div style={{ display: 'flex', gap: '6px' }}>
+                        {session.duress_flag && <span className="status-badge badge-red">DURESS</span>}
+                        <span className={`status-badge ${getBadgeClass(session.anomaly_score, session.is_anomaly)}`}>
+                          {session.is_anomaly ? 'Anomaly' : session.anomaly_score < 0.3 ? 'Normal' : 'Elevated'}
+                        </span>
+                      </div>
+                    </td>
+                    <td style={{ color: 'var(--text-tertiary)', fontSize: '11px' }}>
+                      KST:{session.keystroke_avg_ms || '0'}ms | SWP:{session.swipe_avg_px_per_sec || '0'}px/s | DEV:{session.device_type || 'mobile'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </section>
     </>
