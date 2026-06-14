@@ -172,6 +172,34 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
   gap: 8px;
 }
 
+/* Scoring Reference & Audit Headers */
+.scoring-reference-card {
+  padding: 20px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.scoring-ranges {
+  display: flex;
+  gap: 24px;
+}
+.scoring-range-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.table-header-box {
+  padding: 24px 32px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.table-header-subtitle {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
 /* Table Responsive Wrapper */
 .table-responsive {
   width: 100%;
@@ -359,6 +387,35 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
 
   .fin-table {
     min-width: 600px;
+  }
+
+  .scoring-reference-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 20px;
+  }
+
+  .scoring-ranges {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .scoring-range-item {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .table-header-box {
+    padding: 16px 20px 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .table-header-subtitle {
+    font-size: 10px;
   }
 }
 

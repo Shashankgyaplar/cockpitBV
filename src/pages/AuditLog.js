@@ -42,15 +42,15 @@ export default function AuditLog({ currentUser }) {
         <div className="bento-card" style={{ padding: '24px' }}><div className="metric-value" style={{ color: 'var(--blue)' }}>{avgScore}</div><div className="metric-label">Avg Anomaly Score</div></div>
       </div>
 
-      <div className="bento-card" style={{ padding: '20px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className="bento-card scoring-reference-card">
         <div className="section-label" style={{ margin: 0 }}>Scoring Reference</div>
-        <div style={{ display: 'flex', gap: '24px' }}>
+        <div className="scoring-ranges">
           {[
             { range: '0.0 — 0.3', label: 'Normal', color: 'var(--secure-green)' },
             { range: '0.3 — 0.45', label: 'Elevated', color: 'var(--warn-amber)' },
             { range: '0.45+', label: 'Anomaly', color: 'var(--alert-red)' },
           ].map((item, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div key={i} className="scoring-range-item">
               <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: item.color }} />
               <span className="mono" style={{ fontSize: '12px', color: item.color, fontWeight: '500' }}>{item.range}</span>
               <span style={{ fontSize: '11px', color: 'var(--text-tertiary)' }}>{item.label}</span>
@@ -60,9 +60,9 @@ export default function AuditLog({ currentUser }) {
       </div>
 
       <section className="bento-card" style={{ padding: 0 }}>
-        <div style={{ padding: '24px 32px 12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="table-header-box">
           <h2 className="section-label" style={{ margin: 0 }}>Session History — {sessions.length} total</h2>
-          <span className="mono" style={{ fontSize: '11px', color: 'var(--text-tertiary)' }}>DPDP Act Section 11 Access Ledger</span>
+          <span className="mono table-header-subtitle">DPDP Act Section 11 Access Ledger</span>
         </div>
 
         {sessions.length === 0 ? (
