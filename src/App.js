@@ -35,7 +35,8 @@ export default function App() {
 
   const handleAdminLogin = (e) => {
     e.preventDefault();
-    if (adminUsername.toLowerCase() === 'shashank' && adminPassword === 'E877F6CA') {
+    const user = adminUsername.toLowerCase();
+    if ((user === 'shashank' || user === 'shashwath') && adminPassword === 'E877F6CA') {
       sessionStorage.setItem('bv_admin_auth', 'true');
       setIsAdminLoggedIn(true);
       setLoginError('');
