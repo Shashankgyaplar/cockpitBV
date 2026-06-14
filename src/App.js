@@ -21,6 +21,7 @@ const PROFILES = [
   { name: 'Pavan', id: 'pavan', bank: 'Kotak Bank ···· 1901' },
   { name: 'Shetty', id: 'shetty', bank: 'IndusInd Bank ···· 2010' },
   { name: 'Boss', id: 'boss', bank: 'Federal Bank ···· 2908' },
+  { name: 'Priya', id: 'priya', bank: 'HDFC Bank ···· 71105' },
 ];
 
 export default function App() {
