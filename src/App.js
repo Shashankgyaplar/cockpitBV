@@ -26,6 +26,59 @@ const PROFILES = [
 export default function App() {
   const [page, setPage] = useState('dashboard');
   const [currentUser, setCurrentUser] = useState(PROFILES[0]);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(() => {
+    return sessionStorage.getItem('bv_admin_auth') === 'true';
+  });
+  const [adminPassword, setAdminPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+
+  const handleAdminLogin = (e) => {
+    e.preventDefault();
+    if (adminPassword === 'admin123') {
+      sessionStorage.setItem('bv_admin_auth', 'true');
+      setIsAdminLoggedIn(true);
+      setLoginError('');
+    } else {
+      setLoginError('Invalid Administrator Password');
+    }
+  };
+
+  const handleSignOut = () => {
+    sessionStorage.removeItem('bv_admin_auth');
+    setIsAdminLoggedIn(false);
+    setAdminPassword('');
+  };
+
+  if (!isAdminLoggedIn) {
+    return (
+      <div className="admin-login-container">
+        <form className="admin-login-card" onSubmit={handleAdminLogin}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '24px' }}>
+            <div className="logo-box" style={{ width: '48px', height: '48px', fontSize: '18px', borderRadius: '12px' }}>BV</div>
+          </div>
+          <h1 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '8px', color: 'var(--text-primary)' }}>BehaviorVault</h1>
+          <p className="mono" style={{ fontSize: '11px', color: 'var(--text-tertiary)', textTransform: 'uppercase', marginBottom: '28px', letterSpacing: '0.05em' }}>Compliance Cockpit Portal</p>
+          
+          <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '20px' }}>
+            <label style={{ fontSize: '10px', textTransform: 'uppercase', color: 'var(--text-secondary)', fontWeight: '600', letterSpacing: '0.05em' }}>Admin Security Password</label>
+            <input 
+              type="password" 
+              className="admin-input" 
+              placeholder="••••••••••••"
+              value={adminPassword}
+              onChange={(e) => setAdminPassword(e.target.value)}
+              required
+            />
+            {loginError ? <div className="admin-error">{loginError}</div> : null}
+          </div>
+
+          <button type="submit" className="btn-primary" style={{ height: '42px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            Authenticate Console →
+          </button>
+        </form>
+      </div>
+    );
+  }
 
   return (
     <div className="app-layout">
@@ -89,8 +142,17 @@ export default function App() {
               {new Date().toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
             </div>
           </div>
-          <div className="status-badge badge-green">
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--secure-green)' }} /> Live Terminal
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <button 
+              className="status-badge badge-neutral" 
+              style={{ cursor: 'pointer', borderColor: 'var(--alert-red)', color: 'var(--alert-red)', background: 'rgba(239, 68, 68, 0.05)' }}
+              onClick={handleSignOut}
+            >
+              Sign Out
+            </button>
+            <div className="status-badge badge-green">
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--secure-green)' }} /> Live Terminal
+            </div>
           </div>
         </header>
 
