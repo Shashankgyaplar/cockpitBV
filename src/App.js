@@ -29,23 +29,25 @@ export default function App() {
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(() => {
     return sessionStorage.getItem('bv_admin_auth') === 'true';
   });
+  const [adminUsername, setAdminUsername] = useState('');
   const [adminPassword, setAdminPassword] = useState('');
   const [loginError, setLoginError] = useState('');
 
   const handleAdminLogin = (e) => {
     e.preventDefault();
-    if (adminPassword === 'admin123') {
+    if (adminUsername.toLowerCase() === 'shashank' && adminPassword === 'E877F6CA') {
       sessionStorage.setItem('bv_admin_auth', 'true');
       setIsAdminLoggedIn(true);
       setLoginError('');
     } else {
-      setLoginError('Invalid Administrator Password');
+      setLoginError('Invalid Username or Password');
     }
   };
 
   const handleSignOut = () => {
     sessionStorage.removeItem('bv_admin_auth');
     setIsAdminLoggedIn(false);
+    setAdminUsername('');
     setAdminPassword('');
   };
 
@@ -59,8 +61,22 @@ export default function App() {
           <h1 style={{ fontSize: '20px', fontWeight: '600', marginBottom: '8px', color: 'var(--text-primary)' }}>BehaviorVault</h1>
           <p className="mono" style={{ fontSize: '11px', color: 'var(--text-tertiary)', textTransform: 'uppercase', marginBottom: '28px', letterSpacing: '0.05em' }}>Compliance Cockpit Portal</p>
           
-          <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '20px' }}>
-            <label style={{ fontSize: '10px', textTransform: 'uppercase', color: 'var(--text-secondary)', fontWeight: '600', letterSpacing: '0.05em' }}>Admin Security Password</label>
+          <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '16px' }}>
+            <label style={{ fontSize: '10px', textTransform: 'uppercase', color: 'var(--text-secondary)', fontWeight: '600', letterSpacing: '0.05em' }}>Admin Username</label>
+            <input 
+              type="text" 
+              className="admin-input" 
+              placeholder="shashank"
+              value={adminUsername}
+              onChange={(e) => setAdminUsername(e.target.value)}
+              required
+              autoCapitalize="none"
+              style={{ margin: 0 }}
+            />
+          </div>
+
+          <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '20px' }}>
+            <label style={{ fontSize: '10px', textTransform: 'uppercase', color: 'var(--text-secondary)', fontWeight: '600', letterSpacing: '0.05em' }}>Admin Password</label>
             <input 
               type="password" 
               className="admin-input" 
@@ -68,6 +84,7 @@ export default function App() {
               value={adminPassword}
               onChange={(e) => setAdminPassword(e.target.value)}
               required
+              style={{ margin: 0 }}
             />
             {loginError ? <div className="admin-error">{loginError}</div> : null}
           </div>
