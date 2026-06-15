@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# 🖥️ ConsentCockpit — BehaviorVault Admin Dashboard
+> **DPDP Act & RBI PMLA Compliance and Anomaly Detection Portal**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ConsentCockpit is the dedicated, compliance-focused web interface for the **BehaviorVault 2.0** security ecosystem. It provides bank compliance officers, security admins, and data governance managers with a real-time console to monitor session behavior scorecards, manage DPDP Act data rights, and view complete, unalterable system audit logs.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🖥️ Production Access
+Live Deploy: **[https://cockpitbv.onrender.com](https://cockpitbv.onrender.com)**
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## ⚙️ Key Functionalities
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 1. Real-time Anomaly Overview
+* Displays the current number of **Signals Monitored**, **Third-Party Shares**, and **On-Device processing percentages**.
+* Tracks full transparency lists showing exactly what metrics (Keystroke timing, Swipe speed, Touch duration, Accelerometer data) are collected and what are strictly **never collected** (GPS, Camera, Microphone, Passwords, Contacts).
 
-### `npm test`
+### 2. DPDP Act §12 Data Rights Console
+Allows compliance officers to action consumer requests instantly under the **Digital Personal Data Protection (DPDP) Act 2023**:
+* **Right to Access:** View exactly what telemetry signals were recorded for any session.
+* **Right to Erasure:** Trigger complete erasure of a user's behavioral telemetry dataset with a single click.
+* **Right to Correct/Consent Withdrawal:** Update/withdraw sharing permissions seamlessly.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. RBI PMLA Audit Log
+* Houses the mandatory **7-year immutable ledger** for all transactional events, matching regulatory criteria under the Prevention of Money Laundering Act (PMLA).
+* Shows session markers, timestamps, target anomaly scores, and security status classifications (e.g., normal, elevated risk, high threat).
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠️ Architecture & Tech Stack
+* **Framework:** React.js (Single Page Application)
+* **Styling:** Custom glassmorphism-based dark theme, built with pure vanilla CSS for premium, responsive layouts.
+* **Backend Integration:** Express API querying a MongoDB Atlas cluster.
+* **Authentication:** Authenticates security officer console sessions with session storage caching.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📦 Setup & Local Installation
 
-### `npm run eject`
+### Prerequisites
+* Node.js v18+
+* Active BehaviorVault Backend URL configured in your environment.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Installation
+1. Clone this repository and navigate to the folder:
+   ```bash
+   cd consent-cockpit
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the development server locally:
+   ```bash
+   npm start
+   ```
+4. Open your browser to: [http://localhost:3000](http://localhost:3000)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 👥 Authors & Team
+* **Shashank G Yaplar** ([@Shashankgyaplar](https://github.com/Shashankgyaplar))
+* **Shashwath V** ([@shashwathv](https://github.com/shashwathv))
+* **Shashank S** ([@shashanks](https://github.com/shashanks))
