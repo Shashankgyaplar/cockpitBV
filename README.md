@@ -1,5 +1,8 @@
 # 🖥️ ConsentCockpit — BehaviorVault Admin Dashboard
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 > **DPDP Act & RBI PMLA Compliance and Anomaly Detection Portal**
+
 
 ConsentCockpit is the dedicated, compliance-focused web interface for the **BehaviorVault 2.0** security ecosystem. It provides bank compliance officers, security admins, and data governance managers with a real-time console to monitor session behavior scorecards, manage DPDP Act data rights, and view complete, unalterable system audit logs.
 
@@ -63,3 +66,9 @@ Allows compliance officers to action consumer requests instantly under the **Dig
 * **Shashank G Yaplar** ([@Shashankgyaplar](https://github.com/Shashankgyaplar))
 * **Shashwath V** ([@shashwathv](https://github.com/shashwathv))
 * **Shashank S** ([@shashanks](https://github.com/shashanks))
+
+---
+
+## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
